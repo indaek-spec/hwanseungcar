@@ -121,7 +121,7 @@ form{margin-top:26px;background:#fff;border-radius:18px;padding:26px 20px;color:
 .seg input{display:none}
 .seg span{display:block;height:52px;line-height:49px;text-align:center;border:1.5px solid #d8dde5;border-radius:12px;font-size:15.5px;font-weight:800;color:var(--sub);cursor:pointer}
 .seg input:checked+span{border-color:var(--blue);background:var(--blue2);color:var(--blue)}
-.notice{display:none;margin-top:9px;font-size:13.5px;line-height:1.5;color:#d4380d}
+.notice{display:none;margin-top:9px;font-size:13.5px;line-height:1.5;color:var(--blue)}
 .agree{display:flex;gap:9px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--sub);margin:4px 0 20px}
 .agree input{margin-top:3px;width:18px;height:18px;accent-color:var(--blue)}
 .agree a{color:var(--sub)}
@@ -221,11 +221,11 @@ form{margin-top:26px;background:#fff;border-radius:18px;padding:26px 20px;color:
         <div class="seg">
           <label><input type="radio" name="t" value="리스"><span>리스</span></label>
           <label><input type="radio" name="t" value="장기렌트"><span>장기렌트</span></label>
-          <label><input type="radio" name="t" value="해당 없음"><span>해당 없음</span></label>
+          <label><input type="radio" name="t" value="신규"><span>처음이에요</span></label>
         </div>
-        <p class="notice" id="none">환승카는 지금 리스·장기렌트를 이용 중인 분을 위한 상담이에요.</p>
+        <p class="notice" id="none">처음 이용하셔도 신청하실 수 있어요. 원하시는 차종만 알려주세요.</p>
       </div>
-      <div class="f"><label for="r">남은 계약 기간</label>
+      <div class="f" id="rw"><label for="r">남은 계약 기간</label>
         <select id="r"><option value="">선택해 주세요</option><option>1년 미만</option><option>1~2년</option><option>2~3년</option><option>3년 이상</option><option>잘 모르겠어요</option></select>
       </div>
       <div class="f"><label for="c">차종 <i>(선택)</i></label><input type="text" id="c" placeholder="예: 쏘렌토 타는 중, 카니발로 바꾸고 싶어요"></div>
@@ -258,8 +258,16 @@ form{margin-top:26px;background:#fff;border-radius:18px;padding:26px 20px;color:
     var v=p.value.replace(/\D/g,'').slice(0,11);
     p.value=v.length<4?v:v.length<8?v.slice(0,3)+'-'+v.slice(3):v.slice(0,3)+'-'+v.slice(3,v.length-4)+'-'+v.slice(-4);
   });
+  // 처음 이용하는 고객은 남은 기간 칸 숨기기
+  var cIn=document.getElementById('c');
+  function isNew(){var t=document.querySelector('input[name=t]:checked');return !!t&&t.value==='신규'}
   document.querySelectorAll('input[name=t]').forEach(function(r){
-    r.addEventListener('change',function(){document.getElementById('none').style.display=r.value==='해당 없음'&&r.checked?'block':'none'});
+    r.addEventListener('change',function(){
+      var nw=isNew();
+      document.getElementById('none').style.display=nw?'block':'none';
+      document.getElementById('rw').style.display=nw?'none':'';
+      cIn.placeholder=nw?'예: 카니발 생각하고 있어요':'예: 쏘렌토 타는 중, 카니발로 바꾸고 싶어요';
+    });
   });
 
   var msg={'1년 미만':'만기까지 남은 몇 달, 기다리지 말고 지금 새 차로 갈아타세요.',
@@ -295,14 +303,14 @@ form{margin-top:26px;background:#fff;border-radius:18px;padding:26px 20px;color:
         t=document.querySelector('input[name=t]:checked'),ag=document.getElementById('a').checked,m='';
     if(!n)m='이름을 입력해 주세요.';
     else if(!/^01[016789]\d{7,8}$/.test(ph))m='연락처를 정확히 입력해 주세요.';
-    else if(!t)m='지금 타는 차가 리스인지 장기렌트인지 골라 주세요.';
-    else if(!sel.value)m='남은 계약 기간을 골라 주세요.';
+    else if(!t)m='지금 타는 차를 골라 주세요.';
+    else if(!isNew()&&!sel.value)m='남은 계약 기간을 골라 주세요.';
     else if(!ag)m='개인정보 수집·이용에 동의해 주세요.';
     else if(!api)m='접수 설정 전이에요 (config.js 웹 앱 주소 필요)';
     if(m){e.textContent=m;e.style.display='block';return}
     e.style.display='none';
     var btn=this.querySelector('button[type=submit]');sending=true;btn.disabled=true;btn.textContent='접수 중…';
-    var data={name:n.slice(0,50),phone:ph,type:t.value,period:sel.value,car:document.getElementById('c').value.trim().slice(0,200),agreed:true,
+    var data={name:n.slice(0,50),phone:ph,type:t.value,period:isNew()?'신규':sel.value,car:document.getElementById('c').value.trim().slice(0,200),agreed:true,
       utm_source:(qs.get('utm_source')||'').slice(0,100),utm_medium:(qs.get('utm_medium')||'').slice(0,100),
       utm_campaign:(qs.get('utm_campaign')||'').slice(0,200),utm_content:(qs.get('utm_content')||'').slice(0,200),
       referrer:(document.referrer||'').slice(0,500)};
