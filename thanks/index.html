@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>상담 신청 완료 | 환승카</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--ink:#0e1525;--sub:#5d6677;--mute:#8d95a3;--line:#e7eaf0;--bg:#f3f5f8;--navy:#0e1a33;--blue:#1d5bff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#dde2e9}
+body{font-family:Pretendard,-apple-system,sans-serif;color:var(--ink);word-break:keep-all;-webkit-font-smoothing:antialiased}
+.wrap{max-width:480px;margin:0 auto;background:#fff;min-height:100vh;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;padding:13px 20px;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:900;letter-spacing:-.8px;color:var(--navy);text-decoration:none}
+.logo svg{width:30px;height:30px}
+
+.hero{padding:44px 24px 40px;background:linear-gradient(180deg,#eef2f8 0%,#fff 100%)}
+.check{width:60px;height:60px;border-radius:50%;background:var(--blue);display:grid;place-items:center;animation:pop .45s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.hero h1{margin-top:22px;font-size:36px;line-height:1.25;font-weight:900;letter-spacing:-1.6px;color:var(--navy)}
+.hero h1 span{color:var(--blue)}
+.hero p{margin-top:14px;font-size:17px;line-height:1.55;color:var(--sub)}
+
+/* 노선 */
+.next{padding:36px 24px 10px}
+.next h2{font-size:23px;font-weight:900;letter-spacing:-.8px;color:var(--navy)}
+.road{margin-top:24px;position:relative;padding-left:34px;list-style:none}
+.road::before{content:"";position:absolute;left:9px;top:10px;bottom:10px;width:4px;border-radius:2px;background:linear-gradient(180deg,var(--blue) 0 22%,#d3d9e3 22% 100%)}
+.road li{position:relative;padding-bottom:26px}
+.road li:last-child{padding-bottom:0}
+.road li::before{content:"";position:absolute;left:-34px;top:2px;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid #d3d9e3;box-sizing:border-box}
+.road li.now::before{border-color:var(--blue);background:var(--blue);box-shadow:0 0 0 5px rgba(29,91,255,.15)}
+.road b{display:block;font-size:18px;font-weight:800;letter-spacing:-.4px}
+.road li.now b{color:var(--blue)}
+.road p{margin-top:4px;font-size:15px;line-height:1.5;color:var(--sub)}
+
+.tip{margin:30px 24px 0;background:var(--bg);border-radius:14px;padding:20px}
+.tip b{font-size:17px;font-weight:800}
+.tip ul{margin-top:10px;list-style:none}
+.tip li{position:relative;padding-left:14px;font-size:15px;line-height:1.6;color:var(--sub)}
+.tip li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--blue)}
+
+.back{padding:30px 24px 40px}
+.btn{display:block;text-align:center;background:var(--navy);color:#fff;font-weight:800;font-size:17px;padding:18px 0;border-radius:14px;text-decoration:none}
+
+.legal{margin-top:auto;padding:26px 24px 34px;font-size:12.5px;line-height:1.7;color:var(--mute);background:#f7f8fa}
+.legal b{color:var(--sub);font-size:14px;font-weight:900;display:inline-block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="../"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#1d5bff"/><path d="M10.5 18.2l2.3-5.4a2.2 2.2 0 0 1 2-1.3h10.4a2.2 2.2 0 0 1 2 1.3l2.3 5.4v4.4a1 1 0 0 1-1 1H11.5a1 1 0 0 1-1-1z" fill="#fff"/><path d="M14 17.2l1.6-3.7h8.8l1.6 3.7z" fill="#1d5bff"/><circle cx="14" cy="20.6" r="1.2" fill="#1d5bff"/><circle cx="26" cy="20.6" r="1.2" fill="#1d5bff"/><path d="M11.5 28h15.5l-2.6-2.6M28.5 32.5H13l2.6 2.6" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>환승카</a>
+  </header>
+
+  <section class="hero">
+    <div class="check"><svg width="28" height="28" viewBox="0 0 28 28"><path d="M6 14.5l5.5 5.5L22 9" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h1>환승 상담 신청이<br><span>접수됐어요</span></h1>
+    <p>담당자가 확인하고 남겨주신 번호로<br>순서대로 연락드릴게요.</p>
+  </section>
+
+  <section class="next">
+    <h2>이렇게 진행돼요</h2>
+    <ol class="road">
+      <li class="now"><b>담당자 연락</b><p>남겨주신 번호로 전화드려요.</p></li>
+      <li><b>지금 계약 확인</b><p>남은 기간과 계약 내용을 같이 확인해요.</p></li>
+      <li><b>새 차 고르기</b><p>원하시는 차종으로 조건을 맞춰 드려요.</p></li>
+      <li><b>환승 완료</b><p>남은 계약은 정리하고, 새 차를 받으세요.</p></li>
+    </ol>
+  </section>
+
+  <div class="tip">
+    <b>연락 받기 전에</b>
+    <ul>
+      <li>처음 보는 번호로 연락드릴 수 있어요. 한 번만 받아주세요.</li>
+      <li>지금 계약서나 계약하신 회사 이름을 알아두시면 상담이 빨라요.</li>
+    </ul>
+  </div>
+
+  <div class="back"><a class="btn" href="../">환승카 다시 보기</a></div>
+
+  <footer class="legal">
+    <b>환승카</b><br>
+    주식회사 카시그널 · 대표 윤희성<br>
+    사업자등록번호 838-87-03475<br>
+    서울특별시 금천구 가산디지털2로 165, 1407-2 (가산동, 백상스타타워2차)<br>
+    © 환승카. All rights reserved.
+  </footer>
+</div>
+
+<script src="../config.js"></script>
+<script>
+// 메타 픽셀 (config.js에 META_PIXEL_ID가 있을 때만)
+(function(){
+  var id = (window.HSC_CONFIG || {}).META_PIXEL_ID;
+  if (!id) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', id);
+  fbq('track', 'PageView');
+  // 실제 신청 직후 들어온 경우에만 Lead 이벤트 (새로고침·직접 접속은 제외)
+  var fresh = false;
+  try { fresh = sessionStorage.getItem('hsc_lead') === '1'; sessionStorage.removeItem('hsc_lead'); } catch (e) {}
+  if (fresh) fbq('track', 'Lead');
+})();
+</script>
+</body>
+</html>
